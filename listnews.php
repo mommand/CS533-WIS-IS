@@ -59,7 +59,7 @@ if ($run_query) {
 				<td><?php echo $row['p_date']; ?></td>
 				<td><?php echo $row['category']; ?></td>
 				<td><a href="">Details</a></td>		
-				<td><a href="">Edite</a></td>	
+				<td><a href="edit.php?id=<?php echo $row['id']?>">Edite</a></td>	
 				<td>
 					<a href="delete_news.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Do you want to delete this record?');">
 					Delete</a>
