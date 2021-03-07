@@ -16,16 +16,17 @@ if (empty($category)) {
 	header('location:news.php');
 }
 // send data to database table
-$db = mysqli_select_db($conn, 'tech_news');
+$db = mysqli_select_db($conn, 'news');
 // insert query
-$insert_query = "INSERT INTO news(id,title,p_date,category,body)VALUES (null, '$title','$p_date','$category','$body')";
-if (mysqli_query($conn,$insert_query)) {
+$insert_query = "INSERT INTO news(id,title,p_date,category,body) VALUES (null, '$title','$p_date','$category','$body')";
+
+if ($run = mysqli_query($conn,$insert_query)) {
 	
 	$_SESSION['success'] = "Your news has successfully published!";
 	header('location:news.php');
 }
 else{
-	echo "Error";
+	echo "Error".mysqli_error($conn);
 }
 
 ?>

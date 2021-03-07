@@ -2,7 +2,7 @@
 $host = 'localhost';
 $username = 'root';
 $password = 'root';
-$database = 'ACM';
+$database = 'news';
 
 $conn = mysqli_connect($host,$username,$password);
 
