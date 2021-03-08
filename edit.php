@@ -1,16 +1,21 @@
 <?php
 include('db_connect.php');
 include('assets.php');
-mysqli_select_db($conn, 'tech_news');
+session_start();
+mysqli_select_db($conn, 'news');
+// select execute
 $id = $_GET['id'];
-$q = "SELECT * FROM news WHERE id=$id";
 
-if ($r_q = mysqli_query($conn,$q)) {
-	$row_count = mysqli_num_rows($r_q);
-	if ($row_count != 0) {
-
-		$row = mysqli_fetch_assoc($r_q);
-	}
+// fetech record
+$query = "SELECT * FROM news WHERE id = $id";
+// execute query
+$exe_query = mysqli_query($conn, $query);
+// check for the records
+if (mysqli_num_rows($exe_query) < 0) {
+	 echo "Records are not Exited";
+}
+else{
+	$rec = mysqli_fetch_assoc($exe_query);
 }
 ?>
 <div class="container">
@@ -19,11 +24,11 @@ if ($r_q = mysqli_query($conn,$q)) {
 	<div class="row">
 		<div class="page-header">
 			<h4 class="text-center">
-				Edite your news!
+				Edit your news!
 			</h4>
 		</div>
 	</div>
-	<form action="UpdateNewsController.php" method="post">
+	<form action="UpdateController.php" method="post">
 		<div class="row form-group">
 			<?php
 			if (isset($_SESSION['success'])) {
@@ -43,20 +48,9 @@ if ($r_q = mysqli_query($conn,$q)) {
 			</div>
 			<div class="col-md-6">
 				<label>Title</label>
-				<input type="text" name="title" class="form-control" value="<?php echo $row['title']; ?>">
-				<?php
-				 if (isset($_SESSION['error'])) {
-				 	?>
-				 	 <p class="text-danger">
-				 	 	<?php 
-				 	 	echo $_SESSION['error'];
-				 	 	unset($_SESSION['error']); 
-				 	 	?>
-				 	 </p>
-				 	<?php
-				 }
-				?>
+				<input type="text" name="title" class="form-control" value="<?php echo $rec['title'];?>">
 			</div>
+			<input type="hidden" name="id" value="<?php echo $rec['id']; ?>">
 		</div>
 		<div class="row form-group">
 				<div class="col-md-6">
@@ -83,31 +77,19 @@ if ($r_q = mysqli_query($conn,$q)) {
 					?>
 					
 				</select>
-				<?php
-				 if (isset($_SESSION['error1'])) {
-				 	?>
-				 	 <p class="text-danger">
-				 	 	<?php 
-				 	 	echo $_SESSION['error1'];
-				 	 	unset($_SESSION['error1']); 
-				 	 	?>
-				 	 </p>
-				 	<?php
-				 }
-				?>
 			</div>
 		</div>
 		<div class="row form-group">
 			<div class="col-md-10">
 				<label>Body</label>
 				<textarea class="form-control" name="body" rows="10">
-					<?php echo $row['details']; ?>
+					<?php echo $rec['body']; ?>
 				</textarea>
 			</div>
 		</div>
 		<div class="row form-group">
 			<div class="col-md-6">
-				 <input type="submit" name="submit" value="Publish!" class="btn btn-primary">
+				 <input type="submit" name="submit" value="Update!" class="btn btn-primary">
 			</div>
 		</div>
 	</form>

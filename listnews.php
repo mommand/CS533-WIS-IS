@@ -58,10 +58,10 @@ if ($run_query) {
 				<td><?php echo $row['title']; ?></td>
 				<td><?php echo $row['p_date']; ?></td>
 				<td><?php echo $row['category']; ?></td>
-				<td><a href="">Details</a></td>		
-				<td><a href="edit.php?id=<?php echo $row['id']?>">Edite</a></td>	
+				<td><a href="" class="btn btn-primary">Details</a></td>		
+				<td><a href="edit.php?id=<?php echo $row['id']?>" class="btn btn-warning">Edite</a></td>	
 				<td>
-					<a href="delete_news.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Do you want to delete this record?');">
+					<a href="delete_news.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Do you want to delete this record?');" class="btn btn-danger">
 					Delete</a>
 				</td>	
 			</tr>
