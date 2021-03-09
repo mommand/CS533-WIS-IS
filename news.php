@@ -19,7 +19,7 @@
 			</h4>
 		</div>
 	</div>
-	<form action="newsController.php" method="post">
+	<form action="newsController.php" method="post" enctype="multipart/form-data">
 		<div class="row form-group">
 			<?php
 			if (isset($_SESSION['success'])) {
@@ -91,6 +91,12 @@
 				 	<?php
 				 }
 				?>
+			</div>
+		</div>
+		<div class="row form-group">
+			<div class="col-md-6">
+				<label>Upload Image</label>
+				<input type="file" name="image" class="form-control">
 			</div>
 		</div>
 		<div class="row form-group">

@@ -46,6 +46,7 @@ if ($run_query) {
 				<th>Title</th>
 				<th>Published In</th>
 				<th>Category</th>
+				<th>Image</th>
 				<th colspan="4">More Action</th>
 			</tr>
 		
@@ -58,6 +59,9 @@ if ($run_query) {
 				<td><?php echo $row['title']; ?></td>
 				<td><?php echo $row['p_date']; ?></td>
 				<td><?php echo $row['category']; ?></td>
+				<td>
+					<img src="<?php echo $row['image']; ?>" width="100">	
+				</td>
 				<td><a href="" class="btn btn-primary">Details</a></td>		
 				<td><a href="edit.php?id=<?php echo $row['id']?>" class="btn btn-warning">Edite</a></td>	
 				<td>
