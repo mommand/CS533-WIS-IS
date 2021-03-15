@@ -3,13 +3,32 @@
 <head>
 	<title>Upload News</title>
 	<?php
+		session_start();
+	    if (!isset($_SESSION['username'])) {
+		  	header('location: login.php');
+		  }
 		include('assets.php');
 		include('db_connect.php');
-		session_start();
 	?>
 </head>
 <body>
-<div class="container">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand pull-right" href="logout.php?logout=1">
+      	Log out
+      </a>
+    </div>
+    <a href="" class="pull-right" style="padding: 10px; float: right;">
+    	<?php 
+    	 if (isset($_SESSION['full_name'])) {
+    	 	echo $_SESSION['full_name'];
+    	 }
+    	?>
+    </a>
+  </div>
+</nav>
+<div class="container" style="padding-top: 7%;">
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
 	<div class="row">
@@ -30,6 +49,7 @@
 				 	 </p>
 				 </div>
 				<?php
+				unset($_SESSION['success']);
 			}
 			?>
 			<div class="row">
